@@ -7,5 +7,5 @@ from Moremodel.models import *
 
 
 def index(request):
-    User.objects.filter()
-    return JsonResponse({"code":1})
+	return JsonResponse({"code":123})
+
