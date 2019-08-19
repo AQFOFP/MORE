@@ -4,10 +4,10 @@ from django.db import models
 # Create your models here.
 class User(models.Model):
     username = models.CharField(max_length=200)
-    phone = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100, unique=True)
     sex = models.BooleanField(default=True)
-    icon = models.CharField(max_length=200)
-    introduct = models.CharField(max_length=255)
+    icon = models.CharField(max_length=200, default='')
+    introduct = models.CharField(max_length=255, default='')
 
     class Meta:
         db_table = "more_user"
@@ -25,6 +25,7 @@ class Article(models.Model):
     articontent = models.CharField(max_length=255)
     artiimg = models.CharField(max_length=200)
     artirelation = models.CharField(max_length=255)
+    artirelationico = models.CharField(max_length=255)
     artidatetime = models.DateTimeField(auto_now_add=True)
     artitype = models.CharField(max_length=200)
 

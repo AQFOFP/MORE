@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.LogMiddleware.ErrorMiddleware',
+    'middleware.Usermiddleware.LoginMiddleware',
 ]
 
 ROOT_URLCONF = 'MORE.urls'
@@ -114,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -132,6 +133,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/uploads')
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',  # 缓存引擎
+        'LOCATION': 'cache_table',  # 缓存表
+        'TIMEOUT': '60',
+        'OPTIONS': {
+            'MAX_ENTRIES': '300',
+        },
+        'KEY_PREFIX': 'more',  # 缓存记录的前缀
+        'VERSION': '1',
+    }
+}
 
 
 
