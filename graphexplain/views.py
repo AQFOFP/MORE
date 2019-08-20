@@ -1,3 +1,5 @@
+import time
+
 from django.http import JsonResponse
 from django.shortcuts import render, redirect,reverse
 
@@ -27,7 +29,7 @@ def relatest(request,sort):
                 'artitime': art.commentsdatetime,
             }
 
-            art_list.append(art)
+            art_list.append(artdetail)
         data = {
             'art_list': art_list,
         }
@@ -46,7 +48,7 @@ def relatest(request,sort):
                 'artitime': art.commentsdatetime,
             }
 
-            art_list.append(art)
+            art_list.append(artdetail)
             art_list.sort(key=artdetail['artinum'])
         data = {
             'art_list': art_list,
@@ -55,8 +57,28 @@ def relatest(request,sort):
     return JsonResponse({})
 
 
-def usercomment(request):
-    comments = Comments.objects.all()
+
+#get进入图说详情
+def picturedetail(request,artid):
+    art = Article.objects.filter(id=artid)
+
+    content = art.articontent
+    img = art.artiimg
+    title = art.artititle
+
+    data = {
+        'content' : content,
+        'img' : img,
+        'title' : title,
+    }
+    return JsonResponse(data)
+
+
+
+
+#用户评论页面
+def usercomments(request,artid):
+    comments = Comments.objects.filter(article=artid)
 
     comment_list = []
     for comment in comments:
@@ -73,10 +95,61 @@ def usercomment(request):
     return JsonResponse({'data':comment_list})
 
 
+#回复页面
+def replyPage(request):
+
+    msg = request.POST.get('msg')
+
+    com = Comments()
+    com.commentscontent = msg
+    com.commentsdatetime = time.time()
+
+    return JsonResponse({})
+
+
+
+#用户收藏页面
+def collection(request,userid):
+
+    cols = Collection.objects.all()
+    col_list = []
+    for col in cols:
+        col = Collection.objects.filter(userid=userid)
+        lastreadtime = col.lastreadtime
+        title = col.article_srt.artititle
+        img = col.article_srt.img
+        putin = col.article_srt.artititle
+
+
+        coldetail = {
+            'lastreadtime':lastreadtime,
+            'title':title,
+            'img':img,
+            'putin':putin,
+        }
+
+        col_list.append(col)
+        col_list.sort(key=coldetail['lastreadtime'])
+
+    data = {
+        'col_list':col_list,
+    }
+
+    return JsonResponse(data)
+
+
+#用户观点
+def userview(request,userid):
 
 
 
 
+
+    data = {
+
+    }
+
+    return JsonResponse(data)
 
 
 
