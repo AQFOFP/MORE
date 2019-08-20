@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'found',
     'latest',
     'mine',
+    'guide'
 ]
 
 MIDDLEWARE = [
@@ -88,7 +89,7 @@ DATABASES = {
         'PORT': 3306,
         'NAME': 'more',
         'USER': 'root',
-        'PASSWORD': 'root'
+        'PASSWORD': 'rock1204'
     }
 }
 

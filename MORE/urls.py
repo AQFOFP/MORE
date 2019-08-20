@@ -22,4 +22,7 @@ urlpatterns = [
     path('found/', include(('found.urls', 'found'), namespace='found')),
     path('latest/', include(('latest.urls', 'latest'), namespace='latest')),
     path('mine/', include(('mine.urls', 'mine'), namespace='mine')),
+
+    #1.引导页
+    path('guide/', include(('guide.urls', 'guide'), namespace='guide')),
 ]
