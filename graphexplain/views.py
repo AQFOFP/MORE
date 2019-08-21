@@ -141,12 +141,7 @@ def collection(request,userid):
 #用户观点
 def userview(request,userid):
 
-
-
-
-
     data = {
-
     }
 
     return JsonResponse(data)

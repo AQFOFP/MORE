@@ -9,7 +9,7 @@ from Moremodel.models import User
 class LoginMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
-        path_list = ['/mine/home','/mine/psonmodify']
+        path_list = ['/mine/home','/mine/psonmodify','/guide/guide/','/graphexplain/latest/','/graphexplain/relatest/','/graphexplain/usercomments/','/graphexplain/replyPage/']
         # print(request.path)
         if request.path in path_list:
             userid = request.session.get('phone', 0)
