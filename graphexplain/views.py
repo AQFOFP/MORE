@@ -33,7 +33,7 @@ def relatest(request,sort):
         data = {
             'art_list': art_list,
         }
-        return JsonResponse(data)
+        return JsonResponse({"code":1,'msg':'success',"data":data})
 
     #最热
     if sort == '1':
@@ -53,7 +53,7 @@ def relatest(request,sort):
         data = {
             'art_list': art_list,
         }
-        return JsonResponse(data)
+        return JsonResponse({"code":1,'msg':'success',"data":data})
     return JsonResponse({})
 
 
@@ -71,7 +71,7 @@ def picturedetail(request,artid):
         'img' : img,
         'title' : title,
     }
-    return JsonResponse(data)
+    return JsonResponse({"code":1,'msg':'success',"data":data})
 
 
 
@@ -135,7 +135,7 @@ def collection(request,userid):
         'col_list':col_list,
     }
 
-    return JsonResponse(data)
+    return JsonResponse({"code":1,'msg':'success',"data":data})
 
 
 #用户观点
@@ -144,7 +144,7 @@ def userview(request,userid):
     data = {
     }
 
-    return JsonResponse(data)
+    return JsonResponse({"code":1,'msg':'success',"data":data})
 
 
 
